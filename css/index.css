@@ -1,0 +1,60 @@
+*{
+	border: 0;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+body{
+	font-family: 'Oxygen', sans-serif;
+}
+.header{
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+	background-image: url(https://static.pexels.com/photos/87646/horsehead-nebula-dark-nebula-constellation-orion-87646.jpeg);
+	background-size: cover;
+}
+.header-content{
+	width: 1000px;
+	margin: 0 auto;
+	padding: 10% 0;
+}
+.header-content-logo{
+	width: 50%;
+	float: left;
+	text-align: center;
+	font-size: 4em;
+	margin: 5% auto;
+	color: #fff;
+	text-shadow: 0 0 30px #000;
+	transition: 0.5s;
+}
+.header-content-text{
+	float: left;
+	width: 50%;
+	margin: 5% auto;
+	text-align: center;
+	color: #fff;
+	text-shadow: 0 0 20px #000;
+	letter-spacing: 2px;
+	text-transform: uppercase;	
+}
+.header-nav{
+	clear: both;
+	position: absolute;
+	bottom: 0;
+}
+.header-nav-li{
+	text-align: center;
+	float: left;
+	width: 50vw;
+	color: #fff;
+	font-size: 2em;
+	font-weight: normal;
+	text-shadow: 0 0 20px #000;
+	transition: 0.3s;
+	padding: 0.5% 0 0.5%;
+}
+.header-nav-li:hover{
+	background-color: rgba(0,0,0,0.5);
+}

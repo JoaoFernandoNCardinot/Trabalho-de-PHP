@@ -1,0 +1,68 @@
+h1{
+	text-align: center;
+	font-size: 4em;
+	margin: 0 auto 20px;
+	opacity: 0.9;
+	text-shadow: 0 0 30px #000;
+	transition: 0.5s;
+}
+body{
+	margin: 0 auto;
+	text-align: center;
+	font-family: 'Oxygen', sans-serif;
+	background: url("https://4kwallpaper.org/wp-content/uploads/2016/10/iphone-tumblr-wallpaper-HD10-1024x576.jpg") fixed no-repeat;
+	background-size: cover;
+}
+
+.login:hover h1{
+	font-size: 4.5em;
+}
+
+.login{
+	width: 40%;
+	margin: 6% auto ;
+	padding: 4%;
+	border-radius: 20px;
+	box-shadow: 0 4px 10px 0 #262626, 0 4px 10px 0 #262626;
+	background-color: rgba(179, 179, 255,0.3);
+	color: #000;
+}
+
+label{
+	font-size: 1.5em;
+	padding: 10px;
+	opacity: 1;
+	text-shadow: 0 0 10px #000;
+}
+input{
+	width: 90%;
+	padding: 1%;
+	border-radius:5px;
+	box-shadow: none;
+	border:none;
+	background: rgba(255,255,255, 0.5);
+	text-align: center;
+
+}
+label, input{
+	display: block;
+	margin: 0 auto;
+}
+
+#enviar{
+	margin-top: 10%;
+	border-radius: 5px;
+	width: 40%;
+	padding: 1%;
+	border: none;
+	background-color: rgba(255,255,255,0.7);
+	font-size: 1.5em;
+	color: #000;
+	font-family: 'Oxygen', sans-serif;
+}
+
+#enviar:hover{
+	transition: 0.2s;
+	box-shadow: 0 4px 10px 0 #262626, 0 4px 10px 0 #262626;
+	font-weight: bold;
+}
