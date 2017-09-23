@@ -1,10 +1,18 @@
-
 body{
 	background-image: url('http://t.wallpaperweb.org/wallpaper/nature/1920x1200/01885_halfmoonbaysunset_1920x1200.jpg');
 	background-size: cover;
 	font-family: 'Oxygen', sans-serif;
 	margin: 0;
 }
+
+h3{
+	text-align: center;
+	font-size: 2em;
+	margin-top: 2%;
+	text-shadow: 0 0 30px #000;
+	opacity: 0.9;
+}
+
 .cadastro{
 	width: 50%;
 	margin: 1% auto ;
@@ -29,7 +37,7 @@ body{
 	font-family: 'Oxygen', sans-serif;
 }
 .send{
-	margin-top: 10%;
+	margin-top: 5%;
 	border-radius: 5px;
 	width: 40%;
 	padding: 1%;
@@ -44,6 +52,7 @@ body{
 	box-shadow: 0 4px 10px 0 #262626, 0 4px 10px 0 #262626;
 	font-weight: bold;
 }
+
 .titulo{
 	text-align: center;
 	font-size: 4em;
@@ -52,6 +61,17 @@ body{
 	text-shadow: 0 0 30px #000;
 	transition: 0.5s;
 }
+
 .cadastro:hover h1{
 	font-size: 4.5em;
+}
+
+.foto{
+	display: block;
+	font-family: 'Oxygen', sans-serif;
+	font-size: 0.9em;
+	margin: 1% auto;
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 5px;
+	padding: 4px;
 }

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -16,8 +15,8 @@
 				<div class="header-content-text"> SINEP é uma rede social muito linda. Aqui você terá tudo de bom, uma vez que o site foi realizado por Milena e João Fernando. os mais lindos do 2º ano! <3</div>
 			</div>
 			<div class="header-nav">
-				<a href="login.html"><h1 class="header-nav-li">Login</h1></a>
-				<a href="cadastrar.html"><h1 class="header-nav-li">Cadastro</h1></a>
+				<a href="login.php"><h1 class="header-nav-li">Login</h1></a>
+				<a href="cadastrar.php"><h1 class="header-nav-li">Cadastro</h1></a>
 			</div>
 		</div>
 	</body>
