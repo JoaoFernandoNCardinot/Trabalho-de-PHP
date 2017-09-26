@@ -5,7 +5,9 @@
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 		$nome= $_POST['nome'];
 		$sobre= $_POST['sobrenome'];
-		$sexo= $_POST['sexo'];
+		if(isset($_POST['sexo'])){
+			$sexo= $_POST['sexo'];
+		}
 		$email= $_POST['email'];
 		$user= $_POST['userName'];
 		$senha= $_POST['senha'];
@@ -15,20 +17,27 @@
 
 		if($senha == $conf && $nome != "" && $sobre != "" && $sexo != "" && $email !="" && $user != "" && $senha != "" && isset($_FILES['ftPer']) && isset($_FILES['ftFun'])){
 
-			if(!file_exists('dados/'.$user)){
-				mkdir('dados/'.$user);
+			if($ftPer['type']=="image/jpeg" && $ftFun['type']=="image/jpeg"){
 
-				$caminho= "dados/".$user;
+				if(!file_exists('dados/'.$user)){
+					mkdir('dados/'.$user);
 
-				move_uploaded_file($ftPer['tmp_name'], $caminho);
-				move_uploaded_file($ftFun['tmp_name'], $caminho);
+					$caminho= getcwd()."/dados/".$user;
 
-				$aviso2 = "Cadastro efetuado! <3";
-				$aviso = "block";
-				$cor = "pink"; 
+					move_uploaded_file($ftPer['tmp_name'], $caminho."/portrait.jpeg");
+					move_uploaded_file($ftFun['tmp_name'], $caminho."/background.jpeg");
+
+					$aviso2 = "Cadastro efetuado! <3";
+					$aviso = "block";
+					$cor = "pink"; 
+				}
+				else{
+					$aviso2 = "usuário ja existe, desculpe! ;)";
+					$aviso= "block";
+				}
 			}
 			else{
-				$aviso2 = "usuário ja existe, desculpe! ;)";
+				$aviso2 = "Uma das imagens não é JPEG! ;)";
 				$aviso= "block";
 			}
 		}

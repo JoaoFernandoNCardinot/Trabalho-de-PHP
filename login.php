@@ -34,8 +34,8 @@
 					$user['email'] = "RootdaMilenaedoJoao@rootmail.com";
 					$user['username'] = "root";
 					$user['senha'] = hash("SHA512", $senha);
-					$user['perfil'] = "./dados/root/fotodeperfil.jpg";
-					$user['fundo'] = "./dados/root/fundo.jpg"; 
+					$user['perfil'] = "./dados/root/portrait.jpg";
+					$user['fundo'] = "./dados/root/background.jpg"; 
 
 					logar($user);
 
