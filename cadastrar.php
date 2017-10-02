@@ -62,8 +62,9 @@
 			<form class="form" enctype="multipart/form-data" action="#" method="POST">
 				<input class="firstName" name="nome" type="text" placeholder="Digite seu nome">
 				<input class="lastName" name="sobrenome" type="text" placeholder="Digite seu sobrenome">
-				<input class="Male" name="sexo" type="radio" name="sexo" value="M">Male
-				<input class="Female" name="sexo" type="radio" name="sexo" value="F"/>Female
+				<input class="Male" name="sexo" type="radio" value="M">Masculino
+				<input class="Female" name="sexo" type="radio" value="F"/>Feminino
+				<input class="Outro" name="sexo" type="radio" value="O">Outro
 				<input class="email" name="email" type="email" placeholder="Digite seu e-mail">
 				<input class="userName" name="userName" type="text" placeholder="Digite seu username"/>
 				<input class="password" name="senha" type="password" placeholder="Digite sua senha"/>

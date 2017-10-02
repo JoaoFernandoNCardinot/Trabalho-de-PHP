@@ -18,7 +18,7 @@ body{
 	margin: 0 auto;
 	text-align: center;
 	font-family: 'Oxygen', sans-serif;
-	background: url("https://4kwallpaper.org/wp-content/uploads/2016/10/iphone-tumblr-wallpaper-HD10-1024x576.jpg") fixed no-repeat;
+	background: url("http://www.intrawallpaper.com/static/images/wallpaper_511.jpg") fixed no-repeat;
 	background-size: cover;
 }
 
@@ -30,8 +30,8 @@ body{
 	width: 40%;
 	margin: 6% auto ;
 	padding: 4%;
-	border-radius: 20px;
-	box-shadow: 0 4px 10px 0 #262626, 0 4px 10px 0 #262626;
+	border-radius: 100px;
+	box-shadow: 0 4px 25px 0 #000, 0 4px 25px 0 #000;
 	background-color: rgba(179, 179, 255,0.3);
 	color: #000;
 }
@@ -64,13 +64,13 @@ label, input{
 	padding: 1%;
 	border: none;
 	background-color: rgba(255,255,255,0.7);
-	font-size: 1.5em;
+	font-size: 0.8em;
 	color: #000;
 	font-family: 'Oxygen', sans-serif;
 }
 
 #enviar:hover{
 	transition: 0.2s;
-	box-shadow: 0 4px 10px 0 #262626, 0 4px 10px 0 #262626;
+	box-shadow: 0 4px 15px 0 #000, 0 4px 15px 0 #000;
 	font-weight: bold;
 }
