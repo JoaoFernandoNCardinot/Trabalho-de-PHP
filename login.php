@@ -1,5 +1,7 @@
 <?php
-	if(isset($_SESSION['usuario']) == true){
+	session_start();
+	
+	if(isset($_SESSION['usuario'])){
 		header('Location:home.php');
 	}
 	else{
@@ -13,8 +15,6 @@
 		if($_SERVER["REQUEST_METHOD"]=="POST"){
 			$usu=$_POST['user'];
 			$senha=$_POST['senha'];
-
-			session_start();
 
 			if( $senha == "" || $usu == ""){
 				$aviso1="Usuário não especificado";

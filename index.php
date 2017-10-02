@@ -12,7 +12,9 @@
 				<div class="header-content-logo">
 					<h1>SINEP</h1>
 				</div>
-				<div class="header-content-text"> SINEP é uma rede social muito linda. Aqui você terá tudo de bom, uma vez que o site foi realizado por Milena e João Fernando. os mais lindos do 2º ano! <3</div>
+				<div class="header-content-text">
+				<p> SINEP (Sistema de Interação Necessária Entre Pessoas) é uma rede social muito linda. Aqui você terá tudo de bom, uma vez que o site foi realizado por Milena e João Fernando. os mais lindos do 2º ano! <3</p>
+				</div>
 			</div>
 			<div class="header-nav">
 				<a href="login.php"><h1 class="header-nav-li">Login</h1></a>
