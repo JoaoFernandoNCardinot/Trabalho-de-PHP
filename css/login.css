@@ -28,7 +28,7 @@ body{
 
 .login{
 	width: 40%;
-	margin: 6% auto ;
+	margin: 4% auto ;
 	padding: 4%;
 	border-radius: 100px;
 	box-shadow: 0 4px 25px 0 #000, 0 4px 25px 0 #000;
@@ -58,6 +58,7 @@ label, input{
 }
 
 #enviar{
+	display: inline;
 	margin-top: 10%;
 	border-radius: 5px;
 	width: 40%;
@@ -67,7 +68,6 @@ label, input{
 	font-size: 0.8em;
 	color: #000;
 	font-family: 'Oxygen', sans-serif;
-	float: left;
 }
 
 #enviar:hover{

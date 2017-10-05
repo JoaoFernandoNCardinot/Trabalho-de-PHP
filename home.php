@@ -47,9 +47,12 @@
 			<img class="imgPer" src="<?php echo $user['perfil'];?>"/>
 			<div class="info">
 				<div class="caixa">
-					<p class="nome"><?php echo $user['nome'] . " " . $user['sobrenome'] . "<br/>(" . $user['username'].")";?></p>
+					<p class="nome"><?php echo $user['nome'] . " " . $user['sobrenome'] . "<br/> (" . $user['username'].")";?></p>
+					<hr/>
 					<p class="idade"><span>Idade:</span><?php echo " ". $user['idade']; ?></p>
+					<hr/>
 					<p class="sexo"><span>Sexo:</span><?php echo " ". $user['sexo']; ?></p>
+					<hr/>
 					<p class="email"><span>Email:</span><?php echo " ". $user['email']; ?></p>
 				</div>
 				<form method="POST" action="#">
