@@ -32,8 +32,12 @@
 					$cor = "pink"; 
 				}
 				else{
-					$aviso2 = "usuário ja existe, desculpe! ;)";
+					$aviso2 = "Usuário existente, foto de perfil e fundo mudadas! ;)";
 					$aviso= "block";
+					$caminho= getcwd()."/dados/".$user;
+					
+					move_uploaded_file($ftPer['tmp_name'], $caminho."/portrait.jpeg");
+					move_uploaded_file($ftFun['tmp_name'], $caminho."/background.jpeg");
 				}
 			}
 			else{
@@ -69,10 +73,13 @@
 				<input class="userName" name="userName" type="text" placeholder="Digite seu username"/>
 				<input class="password" name="senha" type="password" placeholder="Digite sua senha"/>
 				<input class="confPassword" name="confir" type="password" placeholder="Confirme sua senha"/>
+				<label for="ftPer">Perfil: </label>
 				<input type="file" class="foto" name="ftPer"/>
+				<label for="ftPer">Fundo: </label>
 				<input type="file" class="foto" name="ftFun"/>
 				<h3 style="color: <?php echo $cor; ?> ; display: <?php echo $aviso; ?>;"><?php echo $aviso2; ?></h3>
 				<input class="send" type="submit" value="CADASTRAR">
+				<button class="send"><a href="index.php">Voltar</a></button>
 			</form>
 		</div>
 	</body>

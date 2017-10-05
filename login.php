@@ -34,8 +34,8 @@
 					$user['email'] = "RootdaMilenaedoJoao@rootmail.com";
 					$user['username'] = "root";
 					$user['senha'] = hash("SHA512", $senha);
-					$user['perfil'] = "./dados/root/portrait.jpg";
-					$user['fundo'] = "./dados/root/background.jpg"; 
+					$user['perfil'] = "./dados/root/portrait.jpeg";
+					$user['fundo'] = "./dados/root/background.jpeg"; 
 
 					logar($user);
 
@@ -71,6 +71,7 @@
 				<h3 style=" color: red; display:<?php echo $aviso3;?>;">Usuário não existente<h3>
 				<input id="enviar" type="submit" value="ENTRAR">
 			</form>
+				<button id="enviar"><a href="index.php">Voltar</a></button>
 		</div>
 	</body>
 </html>

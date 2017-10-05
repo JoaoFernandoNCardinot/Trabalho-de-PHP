@@ -27,6 +27,7 @@
 		<title>Home</title>
 		<link rel="stylesheet" type="text/css" href="./css/home.css"/>
 		<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Quicksand|Rubik|Varela+Round" rel="stylesheet">
 		<style>
 			body{
 				background: url(<?php echo $user['fundo']; ?>) no-repeat fixed;
@@ -45,13 +46,14 @@
 		<div class="perfil">			
 			<img class="imgPer" src="<?php echo $user['perfil'];?>"/>
 			<div class="info">
-				<p class="nome"><?php echo $user['nome'] . " " . $user['sobrenome'];?></p>
-				<p class="idade"><?php echo $user['idade']; ?></p>
-				<p class="sexo"><?php echo $user['sexo']; ?></p>
-				<p class="email"><?php echo $user['email']; ?></p>
-				<p class="username"></p>
+				<div class="caixa">
+					<p class="nome"><?php echo $user['nome'] . " " . $user['sobrenome'] . "<br/>(" . $user['username'].")";?></p>
+					<p class="idade"><span>Idade:</span><?php echo " ". $user['idade']; ?></p>
+					<p class="sexo"><span>Sexo:</span><?php echo " ". $user['sexo']; ?></p>
+					<p class="email"><span>Email:</span><?php echo " ". $user['email']; ?></p>
+				</div>
 				<form method="POST" action="#">
-					<input type="submit" value="Sair"/>
+					<input class="botao" type="submit" value="Sair"/>
 				</form>
 			</div>
 		</div>
