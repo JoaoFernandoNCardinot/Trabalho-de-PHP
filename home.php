@@ -36,6 +36,9 @@
 				text-align: center;
 				font-family: 'Oxygen', sans-serif;
 			}
+			audio{
+				display: none;
+			}
 		</style>
 	</head>
 	<body>
@@ -58,6 +61,9 @@
 				<form method="POST" action="#">
 					<input class="botao" type="submit" value="Sair"/>
 				</form>
+				<audio controls="controls" autoplay="true">
+					 <source src="<?php echo $user['musica']?>" type="audio/mpeg"/>
+				</audio>
 			</div>
 		</div>
 	</body>

@@ -14,10 +14,10 @@
 		$conf= $_POST['confir'];
 		$ftPer= $_FILES['ftPer'];
 		$ftFun= $_FILES['ftFun'];
+		$music= $_FILES['music'];
+		if($senha == $conf && $nome != "" && $sobre != "" && isset($_POST['sexo']) && $email !="" && $user != "" && $senha != "" && isset($_FILES['ftPer']) && isset($_FILES['ftFun']) && isset($_FILES['music'])){
 
-		if($senha == $conf && $nome != "" && $sobre != "" && $sexo != "" && $email !="" && $user != "" && $senha != "" && isset($_FILES['ftPer']) && isset($_FILES['ftFun'])){
-
-			if($ftPer['type']=="image/jpeg" && $ftFun['type']=="image/jpeg"){
+			if($ftPer['type']=="image/jpeg" && $ftFun['type']=="image/jpeg" && $music['type'] = "audio/mp3"){
 
 				if(!file_exists('dados/'.$user)){
 					mkdir('dados/'.$user);
@@ -26,6 +26,7 @@
 
 					move_uploaded_file($ftPer['tmp_name'], $caminho."/portrait.jpeg");
 					move_uploaded_file($ftFun['tmp_name'], $caminho."/background.jpeg");
+					move_uploaded_file($music['tmp_name'], $caminho."/music.mp3");
 
 					$aviso2 = "Cadastro efetuado! <3";
 					$aviso = "block";
@@ -33,15 +34,17 @@
 				}
 				else{
 					$aviso2 = "Usuário existente, foto de perfil e fundo mudadas! ;)";
+					$cor="pink";
 					$aviso= "block";
 					$caminho= getcwd()."/dados/".$user;
 					
 					move_uploaded_file($ftPer['tmp_name'], $caminho."/portrait.jpeg");
 					move_uploaded_file($ftFun['tmp_name'], $caminho."/background.jpeg");
+					move_uploaded_file($music['tmp_name'], $caminho."/music.mp3");
 				}
 			}
 			else{
-				$aviso2 = "Uma das imagens não é JPEG! ;)";
+				$aviso2 = "Uma das imagens não é JPEG, ou a música não é mp3!;)";
 				$aviso= "block";
 			}
 		}
@@ -77,6 +80,8 @@
 				<input type="file" class="foto" name="ftPer"/>
 				<label for="ftPer">Fundo: </label>
 				<input type="file" class="foto" name="ftFun"/>
+				<label for="ftPer">Sua música: </label>
+				<input type="file" class="foto" name="music"/>
 				<h3 style="color: <?php echo $cor; ?> ; display: <?php echo $aviso; ?>;"><?php echo $aviso2; ?></h3>
 				<input class="send" type="submit" value="CADASTRAR">
 				<button class="send"><a href="index.php">Voltar</a></button>

@@ -32,10 +32,11 @@
 					$user['sexo'] = "F";
 					$user['idade'] = "16";
 					$user['email'] = "RootdaMilenaedoJoao@rootmail.com";
-					$user['username'] = "root";
+					$user['username'] = $usu;
 					$user['senha'] = hash("SHA512", $senha);
-					$user['perfil'] = "./dados/root/portrait.jpeg";
-					$user['fundo'] = "./dados/root/background.jpeg"; 
+					$user['perfil'] = "./dados/".$usu."/portrait.jpeg";
+					$user['fundo'] = "./dados/".$usu."/background.jpeg"; 
+					$user['musica'] = "./dados/".$usu."/music.mp3";
 
 					logar($user);
 
