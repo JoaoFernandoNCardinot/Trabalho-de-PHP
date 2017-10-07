@@ -37,7 +37,9 @@
 				font-family: 'Oxygen', sans-serif;
 			}
 			audio{
-				display: none;
+				width: 50%;
+				margin-top: 20px;
+				border-radius: 20px;
 			}
 		</style>
 	</head>

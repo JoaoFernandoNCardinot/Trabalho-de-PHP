@@ -15,7 +15,8 @@
 
 .info{
 	border: solid 2px rgba(0,0,0, 0.5);
-	border-radius: 10px;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
 	background-color: rgba(0,0,0,0.5);
 	margin: -90px auto 0;
 	padding: 20px;

@@ -14,15 +14,13 @@
 
 		if($_SERVER["REQUEST_METHOD"]=="POST"){
 			$usu=$_POST['user'];
-			$senha=$_POST['senha'];
 
-			if( $senha == "" || $usu == ""){
+			if( hash('sha512', $_POST['senha']) == hash('sha512', "") || $usu == ""){
 				$aviso1="Usuário não especificado";
 				$aviso2="Senha não especificada";
 			}
 			else{
-				if($senha == 'root' && $usu == 'root'){
-					echo "socorro";
+				if(hash('sha512', $_POST['senha']) == hash('sha512', 'root') && $usu == 'root'){
 
 					$user=[];
 
@@ -33,7 +31,7 @@
 					$user['idade'] = "16";
 					$user['email'] = "RootdaMilenaedoJoao@rootmail.com";
 					$user['username'] = $usu;
-					$user['senha'] = hash("SHA512", $senha);
+					$user['senha'] = hash('sha512', 'root');
 					$user['perfil'] = "./dados/".$usu."/portrait.jpeg";
 					$user['fundo'] = "./dados/".$usu."/background.jpeg"; 
 					$user['musica'] = "./dados/".$usu."/music.mp3";
@@ -72,7 +70,7 @@
 				<h3 style=" color: red; display:<?php echo $aviso3;?>;">Usuário não existente<h3>
 				<input id="enviar" type="submit" value="ENTRAR">
 			</form>
-				<button id="enviar"><a href="index.php">Voltar</a></button>
+				<button id="enviar"><a href="index.php">VOLTAR</a></button>
 		</div>
 	</body>
 </html>

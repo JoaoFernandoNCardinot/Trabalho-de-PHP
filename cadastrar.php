@@ -10,12 +10,10 @@
 		}
 		$email= $_POST['email'];
 		$user= $_POST['userName'];
-		$senha= $_POST['senha'];
-		$conf= $_POST['confir'];
 		$ftPer= $_FILES['ftPer'];
 		$ftFun= $_FILES['ftFun'];
 		$music= $_FILES['music'];
-		if($senha == $conf && $nome != "" && $sobre != "" && isset($_POST['sexo']) && $email !="" && $user != "" && $senha != "" && isset($_FILES['ftPer']) && isset($_FILES['ftFun']) && isset($_FILES['music'])){
+		if(hash("sha512", $_POST['senha']) == hash("sha512", $_POST['confir']) && $nome != "" && $sobre != "" && isset($_POST['sexo']) && $email !="" && $user != "" && hash("sha512", $_POST['senha']) != hash("sha512","") && isset($_FILES['ftPer']) && isset($_FILES['ftFun']) && isset($_FILES['music'])){
 
 			if($ftPer['type']=="image/jpeg" && $ftFun['type']=="image/jpeg" && $music['type'] = "audio/mp3"){
 
@@ -84,7 +82,7 @@
 				<input type="file" class="foto" name="music"/>
 				<h3 style="color: <?php echo $cor; ?> ; display: <?php echo $aviso; ?>;"><?php echo $aviso2; ?></h3>
 				<input class="send" type="submit" value="CADASTRAR">
-				<button class="send"><a href="index.php">Voltar</a></button>
+				<button class="send"><a href="index.php">VOLTAR</a></button>
 			</form>
 		</div>
 	</body>
