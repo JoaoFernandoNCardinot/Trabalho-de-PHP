@@ -24,9 +24,16 @@
 	transition: 0.3s;
 	box-shadow: 0 6px 25px 0 #000, 0 6px 25px 0 #000;
 }
+.menua, .menuf{
+	width: 30px;
+	margin: 0;
+}
 
+.infologo img:hover{
+	cursor: pointer;
+}
 .info:hover{
-	background: url(https://media.giphy.com/media/WIhI3Gec1laLe/giphy.gif) fixed, no-repeat;
+	background: url(https://media.giphy.com/media/WIhI3Gec1laLe/giphy.gif) fixed;
 	background-size: 100%;
 	border: solid 2px rgba(255, 204, 224, 0.8);
 	color: #FFF;
@@ -39,16 +46,14 @@
 	background-color: rgba(255,255,255, 0.7);
 	box-shadow: 0 4px 25px 0 #000, 0 4px 25px 0 #000;
 	vertical-align: middle;
-	border-bottom-right-radius: 10px;
-	border-bottom-left-radius: 10px;
 	color: #000;
-	transition: 0.2s;
+	transition: 0.3s;
 }
 .cabecalho:hover{
-	background-color: rgba(0,0,0, 0.7);
+	background-color: rgb(0,0,0);
 	color: #FFF;
 }
-.cabecalho h1{
+.cabecalho .logo, .cabecalho .infologo{
 	float: left;
 	margin: 0.5%;
 	font-size: 1em;
@@ -59,6 +64,17 @@
 	position: absolute;
 	margin: 1%;
 }
+
+.infologo h1, .infologo img{
+	float: left;
+	font-size: 1em;
+	letter-spacing: 0.2em;
+}
+.infologo h1{
+	margin-top: 5px;
+	margin-right: 5px;
+}
+
 .cabecalho .logo{
 	font-size: 1.5em;
 }
@@ -113,3 +129,44 @@ span{
 	margin-left: 10%; 
 }
 
+.menu{
+	height: 121px;
+	width: 300px;
+	background-color: rgb(0,0,0);
+	position: absolute;
+	top: 43px;
+	right: 0;
+	box-shadow: 0 4px 25px 0 #000, 0 4px 25px 0 #000;
+	font-size: 1em;
+	letter-spacing: 0.2em;
+	border-bottom-left-radius: 5px;
+}
+
+.menu ul{
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+.menu li{
+	width: 300px;
+	list-style: none;
+	padding: 20px 0;
+	box-sizing: border-box;
+	margin: 0 auto;
+	transition: 0.2s;
+}
+.menu li:nth-child(2){
+	border-bottom-left-radius: 5px
+}
+.menu li:hover{
+	background-color: rgba(255, 204, 224, 0.5);
+	cursor: pointer;
+}
+
+.bmenu{
+	background: transparent;
+	border: none;
+	font-size: 1em;
+	color: #fff;
+	letter-spacing: 0.2em;
+}
