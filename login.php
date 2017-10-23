@@ -13,36 +13,61 @@
 		$aviso3="none";
 
 		if($_SERVER["REQUEST_METHOD"]=="POST"){
+
 			$usu=$_POST['user'];
 
 			if( hash('sha512', $_POST['senha']) == hash('sha512', "") || $usu == ""){
+
 				$aviso1="Usuário não especificado";
 				$aviso2="Senha não especificada";
+
 			}
 			else{
-				if(hash('sha512', $_POST['senha']) == hash('sha512', 'root') && $usu == 'root'){
 
-					$user=[];
+				$conexao = mysqli_connect("localhost", "root", "","redeSocial");
 
-					$user['id'] = 1;
-					$user['nome'] ="Root";
-					$user['sobrenome'] = "Pavani Netto";
-					$user['sexo'] = "F";
-					$user['idade'] = "16";
-					$user['email'] = "RootdaMilenaedoJoao@rootmail.com";
-					$user['username'] = $usu;
-					$user['senha'] = hash('sha512', 'root');
-					$user['perfil'] = "./dados/".$usu."/portrait.jpeg";
-					$user['fundo'] = "./dados/".$usu."/background.jpeg"; 
-					$user['musica'] = "./dados/".$usu."/music.mp3";
+				if (mysqli_connect_errno()) {
+					printf("Connect failed: %s\n", mysqli_connect_error());
+					exit();
+				}
 
-					logar($user);
+				$confirmacaoU ="SELECT * FROM usuarios WHERE usuario = '$usu'";
 
-					header('Location:home.php');
+				if ($resposta = mysqli_query($conexao,$confirmacaoU)){
+
+					$i=0;
+
+					foreach ($resposta as $dado){
+
+						if(hash('sha512', $_POST['senha']) == $dado['senha']){
+
+							$user=[];
+
+							$user['id'] = $dado['id'];
+							$user['nome'] =$dado['nome'];
+							$user['sobrenome'] = $dado['sobrenome'];
+							$user['sexo'] = $dado['sexo'];
+							$user['idade'] = $dado['idade'];
+							$user['email'] = $dado['email'];
+							$user['username'] = $usu;
+							$user['perfil'] = "./dados/".$usu."/portrait.jpeg";
+							$user['fundo'] = "./dados/".$usu."/background.jpeg"; 
+							$user['musica'] = "./dados/".$usu."/music.mp3";
+
+							logar($user);
+
+							header('Location:home.php');
+						}
+						$i++;
+					}
+
+					mysqli_free_result($resposta);
+
 				}
 				else{
 					$aviso3="block";
 				}
+				mysqli_close($conexao);
 			}
 		}
 		else{

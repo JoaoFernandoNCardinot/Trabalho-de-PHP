@@ -43,15 +43,15 @@
 	position: fixed;
 	width: 100%;
 	top: 0;
-	background-color: rgba(255,255,255, 0.7);
+	background-color: rgba(0,0,0, 0.7);
 	box-shadow: 0 4px 25px 0 #000, 0 4px 25px 0 #000;
 	vertical-align: middle;
-	color: #000;
+	color: #FFF;
 	transition: 0.3s;
 }
 .cabecalho:hover{
-	background-color: rgb(0,0,0);
-	color: #FFF;
+	background-color: rgb(255,255,255);
+	color: #000;
 }
 .cabecalho .logo, .cabecalho .infologo{
 	float: left;
@@ -132,14 +132,15 @@ span{
 .menu{
 	height: 121px;
 	width: 300px;
-	background-color: rgb(0,0,0);
+	background-color: rgb(255,255,255);
 	position: absolute;
 	top: 43px;
 	right: 0;
-	box-shadow: 0 4px 25px 0 #000, 0 4px 25px 0 #000;
 	font-size: 1em;
 	letter-spacing: 0.2em;
 	border-bottom-left-radius: 5px;
+	border-left: groove 1px rgba(105,105,105, 0.5);
+	border-bottom: groove 1px rgba(105,105,105, 0.5);
 }
 
 .menu ul{
@@ -156,10 +157,11 @@ span{
 	transition: 0.2s;
 }
 .menu li:nth-child(2){
-	border-bottom-left-radius: 5px
+	border-bottom-left-radius: 5px;
+	border-top: groove 1px rgba(105,105,105, 0.5);
 }
 .menu li:hover{
-	background-color: rgba(255, 204, 224, 0.5);
+	background-color: rgba(255, 204, 224, 0.4);
 	cursor: pointer;
 }
 
@@ -167,6 +169,6 @@ span{
 	background: transparent;
 	border: none;
 	font-size: 1em;
-	color: #fff;
+	color: #000; 
 	letter-spacing: 0.2em;
 }

@@ -31,13 +31,13 @@
 		<script>
 			$(function(){
 
-				$(".cabecalho").append($("<div />").addClass("menu").append($("<ul />").append($("<li />").attr("id","amigos").text("MOSTRAR AMIGOS")).append($("<li />").append($("<form/>").attr({"method":"POST" , "action": "#"}).append($("<input/>").attr({"type": "submit" , "class":"bmenu" , "value": "SAIR"}))))).slideUp());
+				$(".cabecalho").append($("<div />").addClass("menu").append($("<ul />").append($("<li />").attr("id","amigos").text("MOSTRAR AMIGOS")).append($("<li />").append($("<form/>").attr({"method":"POST" , "action": "#"}).append($("<input/>").attr({"type": "submit" , "class":"bmenu" , "value": "SAIR"}))))).hide());
 
 				$(".cabecalho").hover(function(){
-					$("#img").attr("src","./img/menuw.png");
+					$("#img").attr("src","./img/menub.png");
 				})
 				$(".cabecalho").mouseleave(function(){
-					$("#img").attr("src", "./img/menub.png");
+					$("#img").attr("src", "./img/menuw.png");
 					$(".menu").slideUp("fast");
 				})
 
@@ -68,7 +68,7 @@
 			<h1 class="logo">SINEP</h1>
 			<div class="infologo">
 				<h1>PERFIL DO USUÁRIO</h1>
-				<img id="img" class="menua" src="./img/menub.png" alt="menu"/>
+				<img id="img" class="menua" src="./img/menuw.png" alt="menu"/>
 			</div>
 		</div>
 		<div class="perfil">			
@@ -83,12 +83,6 @@
 					<hr/>
 					<p class="email"><span>Email:</span><?php echo " ". $user['email']; ?></p>
 				</div>
-				<form method="POST" action="#">
-					<input class="botao" type="submit" value="Sair"/>
-				</form>
-				<audio controls="controls" autoplay="true">
-					 <source src="<?php echo $user['musica']?>" type="audio/mpeg"/>
-				</audio>
 			</div>
 		</div>
 	</body>

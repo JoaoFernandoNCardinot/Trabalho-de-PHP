@@ -2,33 +2,62 @@
 	$cor = "red";
 	$aviso="none";
 	$aviso2="";
+
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 		$nome= $_POST['nome'];
 		$sobre= $_POST['sobrenome'];
 		if(isset($_POST['sexo'])){
 			$sexo= $_POST['sexo'];
+
 		}
+		$idade = $_POST['idade'];
 		$email= $_POST['email'];
 		$user= $_POST['userName'];
 		$ftPer= $_FILES['ftPer'];
 		$ftFun= $_FILES['ftFun'];
-		$music= $_FILES['music'];
-		if(hash("sha512", $_POST['senha']) == hash("sha512", $_POST['confir']) && $nome != "" && $sobre != "" && isset($_POST['sexo']) && $email !="" && $user != "" && hash("sha512", $_POST['senha']) != hash("sha512","") && isset($_FILES['ftPer']) && isset($_FILES['ftFun']) && isset($_FILES['music'])){
 
-			if($ftPer['type']=="image/jpeg" && $ftFun['type']=="image/jpeg" && $music['type'] = "audio/mp3"){
+		$senha = hash("sha512", $_POST['senha']);
+
+		if($senha == hash("sha512", $_POST['confir']) && $nome != "" && $idade >= 12 && $sobre != "" && isset($_POST['sexo']) && $email !="" && $user != "" && hash("sha512", $_POST['senha']) != hash("sha512","") && isset($_FILES['ftPer']) && isset($_FILES['ftFun'])){
+
+			if($ftPer['type']=="image/jpeg" && $ftFun['type']=="image/jpeg"){
 
 				if(!file_exists('dados/'.$user)){
+
+					$conexao = mysqli_connect("localhost", "root", "","redeSocial");
+
+					if (mysqli_connect_errno()) {
+						printf("Connect failed: %s\n", mysqli_connect_error());
+						exit();
+					}
+
+					$contagem = mysqli_query($conexao, 'SELECT * FROM usuarios');
+					$id = mysqli_num_rows($contagem);
+
+					$solicitacao="INSERT INTO usuarios VALUES ($id,'$nome','$sobre','$sexo',$idade,'$email','$user','$senha');";
+
 					mkdir('dados/'.$user);
 
 					$caminho= getcwd()."/dados/".$user;
 
 					move_uploaded_file($ftPer['tmp_name'], $caminho."/portrait.jpeg");
 					move_uploaded_file($ftFun['tmp_name'], $caminho."/background.jpeg");
-					move_uploaded_file($music['tmp_name'], $caminho."/music.mp3");
 
-					$aviso2 = "Cadastro efetuado! <3";
-					$aviso = "block";
-					$cor = "pink"; 
+					if (mysqli_query($conexao,$solicitacao)===TRUE){
+
+						$aviso2 = "Cadastro efetuado! <3";
+						$aviso = "block";
+						$cor = "pink";
+
+					} else {
+						echo "Erro inserindo novo valor. Listando erros ... <br>";
+						echo "<pre>";
+						print_r(mysqli_error_list($conexao));
+						echo "</pre>";
+					}
+
+					mysqli_close($conexao);
+
 				}
 				else{
 					$aviso2 = "Usuário existente, foto de perfil e fundo mudadas! ;)";
@@ -38,11 +67,10 @@
 					
 					move_uploaded_file($ftPer['tmp_name'], $caminho."/portrait.jpeg");
 					move_uploaded_file($ftFun['tmp_name'], $caminho."/background.jpeg");
-					move_uploaded_file($music['tmp_name'], $caminho."/music.mp3");
 				}
 			}
 			else{
-				$aviso2 = "Uma das imagens não é JPEG, ou a música não é mp3!;)";
+				$aviso2 = "Uma das imagens não é JPEG!;)";
 				$aviso= "block";
 			}
 		}
@@ -64,13 +92,14 @@
 	<body>
 		<div class="cadastro">
 			<h1 class="titulo">CADASTRO|SINEP</h1>
-			<form class="form" enctype="multipart/form-data" action="#" method="POST">
-				<input class="firstName" name="nome" type="text" placeholder="Digite seu nome">
-				<input class="lastName" name="sobrenome" type="text" placeholder="Digite seu sobrenome">
-				<input class="Male" name="sexo" type="radio" value="M">Masculino
-				<input class="Female" name="sexo" type="radio" value="F"/>Feminino
-				<input class="Outro" name="sexo" type="radio" value="O">Outro
-				<input class="email" name="email" type="email" placeholder="Digite seu e-mail">
+			<form class="form" enctype="multipart/form-data" action="#" method="POST"/>
+				<input class="firstName" name="nome" type="text" placeholder="Digite seu nome"/>
+				<input class="lastName" name="sobrenome" type="text" placeholder="Digite seu sobrenome"/>
+				<input class="Male" name="sexo" type="radio" value="Masculino"/>Masculino
+				<input class="Female" name="sexo" type="radio" value="Feminino"/>Feminino
+				<input class="Outro" name="sexo" type="radio" value="Outro"/>Outro
+				<input class="email" name="email" type="email" placeholder="Digite seu e-mail"/>
+				<input class="idade" name="idade" type="number" placeholder="Digite a sua idade (+12)"/>
 				<input class="userName" name="userName" type="text" placeholder="Digite seu username"/>
 				<input class="password" name="senha" type="password" placeholder="Digite sua senha"/>
 				<input class="confPassword" name="confir" type="password" placeholder="Confirme sua senha"/>
@@ -78,8 +107,6 @@
 				<input type="file" class="foto" name="ftPer"/>
 				<label for="ftPer">Fundo: </label>
 				<input type="file" class="foto" name="ftFun"/>
-				<label for="ftPer">Sua música: </label>
-				<input type="file" class="foto" name="music"/>
 				<h3 style="color: <?php echo $cor; ?> ; display: <?php echo $aviso; ?>;"><?php echo $aviso2; ?></h3>
 				<input class="send" type="submit" value="CADASTRAR">
 				<button class="send"><a href="index.php">VOLTAR</a></button>

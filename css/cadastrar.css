@@ -24,7 +24,7 @@ h3{
 	text-align: center;
 }
 
-.firstName, .lastName, .email, .userName, .password, .confPassword{
+.firstName, .lastName, .email, .userName, .password, .confPassword, .idade{
 	width: 90%;
 	padding: 1%;
 	border-radius:5px;
