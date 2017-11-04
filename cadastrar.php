@@ -18,16 +18,15 @@
 
 		$senha = hash("sha512", $_POST['senha']);
 
-		if($senha == hash("sha512", $_POST['confir']) && $nome != "" && $idade >= 12 && $sobre != "" && isset($_POST['sexo']) && $email !="" && $user != "" && hash("sha512", $_POST['senha']) != hash("sha512","") && isset($_FILES['ftPer']) && isset($_FILES['ftFun'])){
+		if($senha == hash("sha512", $_POST['confir']) && $nome != "" && $idade != 0 && $sobre != "" && isset($_POST['sexo']) && $email !="" && $user != "" && hash("sha512", $_POST['senha']) != hash("sha512","") && isset($_FILES['ftPer']) && isset($_FILES['ftFun'])){
 
-			if($ftPer['type']=="image/jpeg" && $ftFun['type']=="image/jpeg"){
+			if($ftPer['type']=="image/jpeg" && $ftFun['type']=="image/jpeg" && $idade >= 12){
 
 				if(!file_exists('dados/'.$user)){
 
 					$conexao = mysqli_connect("localhost", "root", "","redeSocial");
 
 					if (mysqli_connect_errno()) {
-						printf("Connect failed: %s\n", mysqli_connect_error());
 						exit();
 					}
 
@@ -36,24 +35,21 @@
 
 					$solicitacao="INSERT INTO usuarios VALUES ($id,'$nome','$sobre','$sexo',$idade,'$email','$user','$senha');";
 
-					mkdir('dados/'.$user);
-
-					$caminho= getcwd()."/dados/".$user;
-
-					move_uploaded_file($ftPer['tmp_name'], $caminho."/portrait.jpeg");
-					move_uploaded_file($ftFun['tmp_name'], $caminho."/background.jpeg");
-
 					if (mysqli_query($conexao,$solicitacao)===TRUE){
+						mkdir('dados/'.$user);
+
+						$caminho= getcwd()."/dados/".$user;
+
+						move_uploaded_file($ftPer['tmp_name'], $caminho."/portrait.jpeg");
+						move_uploaded_file($ftFun['tmp_name'], $caminho."/background.jpeg");
 
 						$aviso2 = "Cadastro efetuado! <3";
 						$aviso = "block";
 						$cor = "pink";
 
 					} else {
-						echo "Erro inserindo novo valor. Listando erros ... <br>";
-						echo "<pre>";
-						print_r(mysqli_error_list($conexao));
-						echo "</pre>";
+						$aviso2 = "Campos não preenchidos ou errados! :(";
+						$aviso= "block";
 					}
 
 					mysqli_close($conexao);
@@ -70,7 +66,7 @@
 				}
 			}
 			else{
-				$aviso2 = "Uma das imagens não é JPEG!;)";
+				$aviso2 = "Uma das imagens não é JPEG ou a idade menor que 12!;)";
 				$aviso= "block";
 			}
 		}

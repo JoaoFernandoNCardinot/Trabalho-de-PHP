@@ -27,17 +27,16 @@
 				$conexao = mysqli_connect("localhost", "root", "","redeSocial");
 
 				if (mysqli_connect_errno()) {
-					printf("Connect failed: %s\n", mysqli_connect_error());
 					exit();
 				}
 
 				$confirmacaoU ="SELECT * FROM usuarios WHERE usuario = '$usu'";
 
+				$existe = FALSE;
+
 				if ($resposta = mysqli_query($conexao,$confirmacaoU)){
 
-					$i=0;
-
-					foreach ($resposta as $dado){
+					foreach ($resposta as $dado) {
 
 						if(hash('sha512', $_POST['senha']) == $dado['senha']){
 
@@ -51,14 +50,18 @@
 							$user['email'] = $dado['email'];
 							$user['username'] = $usu;
 							$user['perfil'] = "./dados/".$usu."/portrait.jpeg";
-							$user['fundo'] = "./dados/".$usu."/background.jpeg"; 
-							$user['musica'] = "./dados/".$usu."/music.mp3";
+							$user['fundo'] = "./dados/".$usu."/background.jpeg";
 
 							logar($user);
 
 							header('Location:home.php');
+							$existe = TRUE;
+
 						}
-						$i++;
+					}
+
+					if( $existe == FALSE){
+						$aviso2="Senha errada";
 					}
 
 					mysqli_free_result($resposta);
@@ -69,8 +72,6 @@
 				}
 				mysqli_close($conexao);
 			}
-		}
-		else{
 		}
 	}
 ?>
