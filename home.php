@@ -5,16 +5,37 @@
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
 
 		if($_POST['enviar']=="SAIR"){
+
 			deslogar();
 
-			header('Location: index.php');
+			header("Location: index.php");
 		}
 		else{
 
-		}
+			$user=obterUsurLogado();
 
-	}
-	else{
+			$id_amigo= $_POST['id'];
+
+			$id_pessoa = $user['id'];
+
+			$conexao = mysqli_connect("localhost", "root", "","redeSocial");
+
+			$solicitacao="INSERT INTO amigos VALUES ($id_pessoa, $id_amigo)";
+
+			if (mysqli_query($conexao,$solicitacao)===TRUE){
+
+				mysqli_close($conexao);
+
+				header("Location: home.php");
+
+			} else {
+				
+				mysqli_close($conexao);
+
+				header("Location: home.php");
+			}
+		}
+	}else{
 
 		if(isset($_SESSION['usuario']) == FALSE && isset($_GET['uid'])== FALSE){
 
@@ -23,7 +44,7 @@
 		}
 		else{
 
-			$user=obterUsurLogado();
+				$user=obterUsurLogado();
 
 		}
 	}
@@ -119,7 +140,7 @@
 					<hr/>
 					<form method="POST" action="home.php">
 						<input class="id" type="number" name="id" value="<?php echo $id; ?>"/>
-						<input type="submit" name="amizade" value = "ADICIONAR AOS AMIGOS" class="amigo"/>
+						<input type="submit" name="enviar" value = "ADICIONAR AOS AMIGOS" class="amigo"/>
 					</form>
 					<hr/>
 					<p class="idade"><span>Idade:</span><?php echo " ". $idade; ?></p>
@@ -133,6 +154,15 @@
 						<?php
 
 							$mostrarAmigos ="SELECT * FROM amigos WHERE id_pessoa = $idprocurado";
+
+							$contagem = mysqli_query($conexao, $mostrarAmigos);
+							$numAmigos = mysqli_num_rows($contagem);
+
+							if ($numAmigos == 0) {
+								?>
+								<h4>SEM AMIGOS :(</h4>
+								<?php
+							}
 
 							if($resposta = mysqli_query($conexao,$mostrarAmigos)){
 						?>
@@ -154,8 +184,8 @@
 										}
 										?>
 											<tr>
-												<td><img src="<?php echo $perfilA?>"/></td>
-												<td><?php echo $nomeA ." ". $sobreA ." (" . $user . ")";  ?></td>
+												<td><img src="<?php echo $perfilA;?>"/></td>
+												<td><?php echo $nomeA ." ". $sobreA ." (" . $userA . ")";  ?></td>
 											</tr>
 											<?php
 									}
@@ -164,11 +194,7 @@
 							</table>
 							<?php
 							}
-							else{
-								?>
-								<h4>SEM AMIGOS :(</h4>
-								<?php
-							}
+
 							mysqli_free_result($resposta);
 
 						?>
@@ -191,6 +217,60 @@
 					<p class="sexo"><span>Sexo:</span><?php echo " ". $user['sexo']; ?></p>
 					<hr/>
 					<p class="email"><span>Email:</span><?php echo " ". $user['email']; ?></p>
+					<hr/>
+					<div class="div-amigos">
+					<h1 class="amizades">AMIGOS</h1>
+						<?php
+
+							$conexao = mysqli_connect("localhost", "root", "","redeSocial");
+
+							$usid= $user['id'];
+							$mostrarAmigos ="SELECT * FROM amigos WHERE id_pessoa = $usid ";
+
+							$contagem = mysqli_query($conexao, $mostrarAmigos);
+							$numAmigos = mysqli_num_rows($contagem);
+
+							if ($numAmigos == 0) {
+								?>
+								<h4>SEM AMIGOS :(</h4>
+								<?php
+							}
+
+							if($resposta = mysqli_query($conexao,$mostrarAmigos)){
+						?>
+						<table>
+						<?php
+								foreach ($resposta as $dado){
+
+									$id= $dado['id_amigo'];
+
+									$confirmacaoU ="SELECT * FROM usuarios WHERE id = $id ";
+
+									if($resposta = mysqli_query($conexao,$confirmacaoU)){
+
+										foreach ($resposta as $dado){
+											$nomeA = $dado['nome'];
+											$sobreA = $dado['sobrenome'];
+											$userA = $dado['usuario'];
+											$perfilA = "./dados/".$userA."/portrait.jpeg";
+										}
+										?>
+											<tr>
+												<td><img src="<?php echo $perfilA; ?>"/></td>
+												<td><?php echo $nomeA ." ". $sobreA ." (" . $userA . ")";  ?></td>
+											</tr>
+											<?php
+									}
+								}
+							?>
+							</table>
+							<?php
+							}
+
+							mysqli_free_result($resposta);
+
+						?>
+					</div>
 				</div>
 			</div>
 		</div>
