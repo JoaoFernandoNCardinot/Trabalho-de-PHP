@@ -36,7 +36,7 @@
 
 				if ($resposta = mysqli_query($conexao,$confirmacaoU)){
 
-					foreach ($resposta as $dado) {
+					foreach ($resposta as $dado){
 
 						if(hash('sha512', $_POST['senha']) == $dado['senha']){
 

@@ -98,7 +98,7 @@
 							$id= $dado['id'];
 							$nome= $dado['nome'];
 							$sobrenome= $dado['sobrenome'];
-							$usuario = $dado['username'];
+							$usuario = $dado['usuario'];
 							$sexo= $dado['sexo'];
 							$idade = $dado['idade'];
 							$email = $dado['email'];
@@ -132,10 +132,6 @@
 					<h1 class="amizades">AMIGOS</h1>
 						<?php
 
-							$conexao = mysqli_connect("localhost", "root", "","redeSocial");
-
-							$idprocurado = $_GET['uid'];
-
 							$mostrarAmigos ="SELECT * FROM amigos WHERE id_pessoa = $idprocurado";
 
 							if($resposta = mysqli_query($conexao,$mostrarAmigos)){
@@ -153,16 +149,15 @@
 										foreach ($resposta as $dado){
 											$nomeA = $dado['nome'];
 											$sobreA = $dado['sobrenome'];
-											$userA = $dado['username'];
+											$userA = $dado['usuario'];
 											$perfilA = "./dados/".$userA."/portrait.jpeg";
-
-											?>
+										}
+										?>
 											<tr>
 												<td><img src="<?php echo $perfilA?>"/></td>
 												<td><?php echo $nomeA ." ". $sobreA ." (" . $user . ")";  ?></td>
 											</tr>
 											<?php
-										}
 									}
 								}
 							?>
@@ -170,11 +165,10 @@
 							<?php
 							}
 							else{
-					?>
-					<p>SEM AMIGOS :(</p>
-					<?php
+								?>
+								<h4>SEM AMIGOS :(</h4>
+								<?php
 							}
-
 							mysqli_free_result($resposta);
 
 						?>
@@ -183,8 +177,8 @@
 			</div>
 		</div>
 		<?php
-				}
-				else{
+			}
+			if(!isset($_GET['uid'])){
 		?>
 		<div class="perfil">		
 			<img class="imgPer" src="<?php echo $user['perfil'];?>"/>
@@ -202,7 +196,8 @@
 		</div>
 		<?php
 			}
-			if(!isset($_SESSION['usuario'])){
+		}
+		if(!isset($_SESSION['usuario'])){
 
 				if (isset($_GET['uid'])){
 
@@ -222,29 +217,25 @@
 							$id= $dado['id'];
 							$nome= $dado['nome'];
 							$sobrenome= $dado['sobrenome'];
-							$usuario = $dado['username'];
+							$usuario = $dado['usuario'];
 							$sexo= $dado['sexo'];
 							$idade = $dado['idade'];
 							$email = $dado['email'];
 						}
+						$perfil = "./dados/".$usuario."/portrait.jpeg";
+						$fundo = "./dados/".$usuario."/background.jpeg";
 					}
 
 					mysqli_free_result($resposta);
 
-					$perfil = "./dados/".$usuario."/portrait.jpeg";
-					$fundo = "./dados/".$usuario."/background.jpeg";
-				}
+					
+				
 		?>
 		<div class="perfil">		
 			<img class="imgPer" src="<?php echo $perfil;?>"/>
 			<div class="info">
 				<div class="caixa">
 					<p class="nome"><?php echo $nome . " " . $sobrenome . "<br/> (" . $usuario.")";?></p>
-					<hr/>
-					<form method="POST" action="home.php">
-						<input class="id" type="number" name="id" value="<?php echo $id; ?>"/>
-						<input type="submit" name="amizade" value = "ADICIONAR AOS AMIGOS" class="amigo"/>
-					</form>
 					<hr/>
 					<p class="idade"><span>Idade:</span><?php echo " ". $idade; ?></p>
 					<hr/>
@@ -255,6 +246,7 @@
 			</div>
 		</div>
 		<?php
+			}
 		}
 		?>
 	</body>

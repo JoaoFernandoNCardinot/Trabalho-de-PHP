@@ -43,7 +43,7 @@
 	position: fixed;
 	width: 100%;
 	top: 0;
-	height: 100px;
+	height: 50px;
 	background-color: rgba(0,0,0, 0.7);
 	box-shadow: 0 4px 25px 0 #000, 0 4px 25px 0 #000;
 	vertical-align: middle;
@@ -178,4 +178,12 @@ span{
 	font-size: 1em;
 	color: #000; 
 	letter-spacing: 0.2em;
+}
+
+.id{
+	display: none;
+}
+
+.amigo{
+	margin: 10px auto;
 }
