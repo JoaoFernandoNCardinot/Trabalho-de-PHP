@@ -78,7 +78,27 @@
 		<link href="https://fonts.googleapis.com/css?family=Quicksand|Rubik|Varela+Round" rel="stylesheet">
 		<style>
 			body{
-				background: url(<?php echo $user['fundo'];?>) fixed;
+				background: url(<?php 
+					if(!isset($_GET['uid'])){
+						echo $user['fundo'];
+					}
+					if(isset($_GET['uid'])){
+						$idProcurado= $_GET['uid'];
+
+						$conexao = mysqli_connect("localhost", "root", "","redeSocial");
+
+						$requisicao = "SELECT * FROM usuarios WHERE id = $idProcurado";
+
+							if($resposta=mysqli_query($conexao,$requisicao)){
+								foreach ($resposta as $dado) {
+									$nomeProcurado = $dado['usuario'];
+								}
+								$fotoFund = "./dados/".$nomeProcurado."/background.jpeg";
+
+								echo $fotoFund;
+							}
+					}
+					?>) fixed;
 				background-size: 100%;
 				margin: 0 auto;
 				text-align: center;
@@ -125,11 +145,14 @@
 							$email = $dado['email'];
 						}
 					}
+					else{
+
+						header('Location: home.php');
+					}
 
 					mysqli_free_result($resposta);
 
 					$perfil = "./dados/".$usuario."/portrait.jpeg";
-					$fundo = "./dados/".$usuario."/background.jpeg";
 
 		?>
 		<div class="perfil">		
