@@ -43,7 +43,7 @@
 	position: fixed;
 	width: 100%;
 	top: 0;
-	height: 40px;
+	height: 60px;
 	background-color: rgba(0,0,0, 0.7);
 	box-shadow: 0 4px 25px 0 #000, 0 4px 25px 0 #000;
 	vertical-align: middle;
@@ -135,7 +135,7 @@ span{
 	width: 300px;
 	background-color: rgb(255,255,255);
 	position: absolute;
-	top: 100px;
+	top: 60px;
 	right: 0;
 	font-size: 1em;
 	letter-spacing: 0.2em;
@@ -195,6 +195,6 @@ span{
 
 .div-amigos img{
 	border-radius: 500%;
-	width: 40%;
-	height: 40%;
+	width: 20%;
+	height: 20%;
 }

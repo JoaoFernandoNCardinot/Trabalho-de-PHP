@@ -135,7 +135,6 @@
 
 					if($resposta = mysqli_query($conexao,$confirmacaoU)){
 						foreach ($resposta as $dado) {
-
 							$id= $dado['id'];
 							$nome= $dado['nome'];
 							$sobrenome= $dado['sobrenome'];
@@ -147,7 +146,8 @@
 					}
 					else{
 
-						header('Location: home.php');
+						header('Location: erro.php');
+						die();
 					}
 
 					mysqli_free_result($resposta);
@@ -315,23 +315,24 @@
 					$confirmacaoU ="SELECT * FROM usuarios WHERE id = $idprocurado";
 
 					if($resposta = mysqli_query($conexao,$confirmacaoU)){
-						foreach ($resposta as $dado) {
 
-							$id= $dado['id'];
-							$nome= $dado['nome'];
-							$sobrenome= $dado['sobrenome'];
-							$usuario = $dado['usuario'];
-							$sexo= $dado['sexo'];
-							$idade = $dado['idade'];
-							$email = $dado['email'];
-						}
-						$perfil = "./dados/".$usuario."/portrait.jpeg";
-						$fundo = "./dados/".$usuario."/background.jpeg";
+							foreach ($resposta as $dado){
+
+								$id= $dado['id'];
+								$nome= $dado['nome'];
+								$sobrenome= $dado['sobrenome'];
+								$usuario = $dado['usuario'];
+								$sexo= $dado['sexo'];
+								$idade = $dado['idade'];
+								$email = $dado['email'];
+							}
+							$perfil = "./dados/".$usuario."/portrait.jpeg";
+					}
+					else{
+						header("Location: erro.php");
 					}
 
 					mysqli_free_result($resposta);
-
-					
 				
 		?>
 		<div class="perfil">		
