@@ -26,7 +26,8 @@
 
 					$conexao = mysqli_connect("localhost", "root", "","redeSocial");
 
-					if (mysqli_connect_errno()) {
+					if (mysqli_connect_errno()){
+						header("Location: cadastrar.php");
 						exit();
 					}
 

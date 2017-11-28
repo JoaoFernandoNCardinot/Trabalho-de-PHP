@@ -17,23 +17,30 @@
 			$id_amigo= $_POST['id'];
 
 			$id_pessoa = $user['id'];
-
-			$conexao = mysqli_connect("localhost", "root", "","redeSocial");
-
-			$solicitacao="INSERT INTO amigos VALUES ($id_pessoa, $id_amigo)";
-
-			if (mysqli_query($conexao,$solicitacao)===TRUE){
-
-				mysqli_close($conexao);
-
+			
+			if($id_amigo==$id_pessoa){
 				header("Location: home.php");
-
-			} else {
-				
-				mysqli_close($conexao);
-
-				header("Location: home.php");
+				exit();
 			}
+			else{
+				$conexao = mysqli_connect("localhost", "root", "","redeSocial");
+
+				$solicitacao="INSERT INTO amigos VALUES ($id_pessoa, $id_amigo)";
+
+				if (mysqli_query($conexao,$solicitacao)===TRUE){
+
+					mysqli_close($conexao);
+
+					header("Location: home.php");
+
+				} else {
+					
+					mysqli_close($conexao);
+
+					header("Location: home.php");
+				}
+			}
+			
 		}
 	}else{
 
@@ -72,6 +79,13 @@
 				$(".cabecalho #img").click(function(){
 					$(".menu").slideToggle("fast");
 				});
+				
+				$(".div-amigos table").hide().css("display","none");
+				
+				$(".cabecalho").on("click", "#amigos", function(){
+					$(".div-amigos table").slideDown().css("display","inline-block");
+				});
+				
 			});
 		</script>
 		<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
@@ -134,6 +148,13 @@
 					$confirmacaoU = "SELECT * FROM usuarios WHERE id = $idprocurado";
 
 					if($resposta = mysqli_query($conexao,$confirmacaoU)){
+						
+						$existe= mysqli_affected_rows($conexao);
+						
+						if($existe == 0){
+							header("Location: home.php");
+						}
+						
 						foreach ($resposta as $dado) {
 							$id= $dado['id'];
 							$nome= $dado['nome'];
@@ -145,7 +166,6 @@
 						}
 					}
 					else{
-
 						header('Location: erro.php');
 						die();
 					}
@@ -173,53 +193,53 @@
 					<p class="email"><span>Email:</span><?php echo " ". $email; ?></p>
 					<hr/>
 					<div class="div-amigos">
-					<h1 class="amizades">AMIGOS</h1>
+						<h1 class="amizades">AMIGOS</h1>
 						<?php
 
 							$mostrarAmigos ="SELECT * FROM amigos WHERE id_pessoa = $idprocurado";
-
-							$contagem = mysqli_query($conexao, $mostrarAmigos);
-							$numAmigos = mysqli_num_rows($contagem);
-
-							if ($numAmigos == 0) {
-								?>
-								<h4>SEM AMIGOS :(</h4>
-								<?php
-							}
+							
 
 							if($resposta = mysqli_query($conexao,$mostrarAmigos)){
+								
+								$numAmigos = mysqli_affected_rows($conexao);
+								
+								if ($numAmigos == 0){
+									?>
+									<h4>SEM AMIGOS :(</h4>
+									<?php
+								}
+								else{
 						?>
 						<table>
 						<?php
-								foreach ($resposta as $dado){
+									foreach ($resposta as $dado){
 
-									$id= $dado['id_amigo'];
+										$id= $dado['id_amigo'];
 
-									$confirmacaoU ="SELECT * FROM usuarios WHERE id = $id ";
+										$confirmacaoU ="SELECT * FROM usuarios WHERE id = $id ";
 
-									if($resposta = mysqli_query($conexao,$confirmacaoU)){
+										if($resposta = mysqli_query($conexao,$confirmacaoU)){
 
-										foreach ($resposta as $dado){
-											$nomeA = $dado['nome'];
-											$sobreA = $dado['sobrenome'];
-											$userA = $dado['usuario'];
-											$perfilA = "./dados/".$userA."/portrait.jpeg";
+											foreach ($resposta as $dado){
+												$nomeA = $dado['nome'];
+												$sobreA = $dado['sobrenome'];
+												$userA = $dado['usuario'];
+												$perfilA = "./dados/".$userA."/portrait.jpeg";
+											}
+											?>
+												<tr>
+													<td><img src="<?php echo $perfilA;?>"/></td>
+													<td><?php echo $nomeA ." ". $sobreA ." (" . $userA . ")";  ?></td>
+												</tr>
+												<?php
 										}
-										?>
-											<tr>
-												<td><img src="<?php echo $perfilA;?>"/></td>
-												<td><?php echo $nomeA ." ". $sobreA ." (" . $userA . ")";  ?></td>
-											</tr>
-											<?php
 									}
+									mysqli_free_result($resposta);
+						?>
+						</table>
+						<?php
 								}
-							?>
-							</table>
-							<?php
 							}
-
-							mysqli_free_result($resposta);
-
 						?>
 					</div>
 				</div>
@@ -250,47 +270,49 @@
 							$usid= $user['id'];
 							$mostrarAmigos ="SELECT * FROM amigos WHERE id_pessoa = $usid ";
 
-							$contagem = mysqli_query($conexao, $mostrarAmigos);
-							$numAmigos = mysqli_num_rows($contagem);
-
-							if ($numAmigos == 0) {
-								?>
-								<h4>SEM AMIGOS :(</h4>
-								<?php
-							}
-
 							if($resposta = mysqli_query($conexao,$mostrarAmigos)){
+								
+								$numAmigos = mysqli_affected_rows($conexao);
+
+								if($numAmigos != 0){
 						?>
 						<table>
 						<?php
-								foreach ($resposta as $dado){
+									foreach ($resposta as $dado){
 
-									$id= $dado['id_amigo'];
+										$id= $dado['id_amigo'];
 
-									$confirmacaoU ="SELECT * FROM usuarios WHERE id = $id ";
+										$confirmacaoU ="SELECT * FROM usuarios WHERE id = $id ";
 
-									if($resposta = mysqli_query($conexao,$confirmacaoU)){
+										if($resposta = mysqli_query($conexao,$confirmacaoU)){
 
-										foreach ($resposta as $dado){
-											$nomeA = $dado['nome'];
-											$sobreA = $dado['sobrenome'];
-											$userA = $dado['usuario'];
-											$perfilA = "./dados/".$userA."/portrait.jpeg";
+											foreach ($resposta as $dado){
+												$nomeA = $dado['nome'];
+												$sobreA = $dado['sobrenome'];
+												$userA = $dado['usuario'];
+												$perfilA = "./dados/".$userA."/portrait.jpeg";
+											}
+											?>
+												<tr>
+													<td><img src="<?php echo $perfilA; ?>"/></td>
+													<td><?php echo $nomeA ." ". $sobreA ." (" . $userA . ")";  ?></td>
+												</tr>
+												<?php
 										}
-										?>
-											<tr>
-												<td><img src="<?php echo $perfilA; ?>"/></td>
-												<td><?php echo $nomeA ." ". $sobreA ." (" . $userA . ")";  ?></td>
-											</tr>
-											<?php
 									}
+						?>
+						</table>
+						<?php
+									mysqli_free_result($resposta);
 								}
-							?>
-							</table>
-							<?php
+								else{
+									?>
+									<h4>SEM AMIGOS :(</h4>
+									<?php
+								}
 							}
 
-							mysqli_free_result($resposta);
+							
 
 						?>
 					</div>
@@ -315,6 +337,12 @@
 					$confirmacaoU ="SELECT * FROM usuarios WHERE id = $idprocurado";
 
 					if($resposta = mysqli_query($conexao,$confirmacaoU)){
+						
+						$existe= mysqli_affected_rows($conexao);
+						
+						if($existe == 0){
+							header("Location: home.php");
+						}
 
 							foreach ($resposta as $dado){
 
