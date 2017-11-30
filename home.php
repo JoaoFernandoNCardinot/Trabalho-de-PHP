@@ -231,7 +231,7 @@
 											?>
 												<tr>
 													<td><img src="<?php echo $perfilA;?>"/></td>
-													<td class="nome"><?php echo $nomeA ." ". $sobreA ." (" . $userA . ")";  ?></td>
+													<td class="nome-amigo"><?php echo $nomeA ." ". $sobreA ." (" . $userA . ")";  ?></td>
 												</tr>
 												<?php
 										}
@@ -297,7 +297,7 @@
 											?>
 												<tr>
 													<td><img src="<?php echo $perfilA; ?>"/></td>
-													<td><?php echo $nomeA ." ". $sobreA ." (" . $userA . ")";  ?></td>
+													<td class="nome-amigo"><?php echo $nomeA ." ". $sobreA ." (" . $userA . ")";  ?></td>
 												</tr>
 												<?php
 										}
@@ -313,9 +313,6 @@
 									<?php
 								}
 							}
-
-							
-
 						?>
 					</div>
 				</div>

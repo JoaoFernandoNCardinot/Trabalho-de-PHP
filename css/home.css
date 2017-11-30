@@ -3,7 +3,6 @@
 	border-radius: 500px;
 	margin: 0 auto ;
 	width: 29.5%;
-	height: 29.5%;
 	transition: 0.2s;
 	box-shadow: 0 4px 20px 0 #000, 0 0px 20px 0 #000;
 }
@@ -198,6 +197,10 @@ span{
 	margin: 0 auto;
 }
 
+table{
+	width: 80%;
+}
+
 .div-amigos img{
 	border-radius: 500%;
 	width: 150px;
@@ -206,7 +209,7 @@ span{
 
 }
 
-.nome{
+.nome-amigo{
 	text-align: left;
 }
 
