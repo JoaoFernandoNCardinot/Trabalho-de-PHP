@@ -185,6 +185,12 @@ span{
 
 .amigo{
 	margin: 10px auto;
+	border-radius: 10px;
+	border: solid 2px #FFF;
+	background-color: transparent;
+	text-shadow: 0px 1px 4px #000;
+	color: #FFF;
+	padding: 5px 10px;
 }
 
 .div-amigos{
@@ -194,6 +200,16 @@ span{
 
 .div-amigos img{
 	border-radius: 500%;
-	width: 20%;
-	height: 20%;
+	width: 150px;
+	height: 150px;
+	box-shadow: 0 4px 15px 0 #000, 0 4px 15px 0 #000;
+
+}
+
+.nome{
+	text-align: left;
+}
+
+.add{
+	text-align: center;
 }

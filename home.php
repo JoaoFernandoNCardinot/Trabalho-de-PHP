@@ -181,10 +181,12 @@
 				<div class="caixa">
 					<p class="nome"><?php echo $nome . " " . $sobrenome . "<br/> (" . $usuario.")";?></p>
 					<hr/>
-					<form method="POST" action="home.php">
-						<input class="id" type="number" name="id" value="<?php echo $id; ?>"/>
-						<input type="submit" name="enviar" value = "ADICIONAR AOS AMIGOS" class="amigo"/>
-					</form>
+					<div class="add">
+						<form method="POST" action="home.php">
+							<input class="id" type="number" name="id" value="<?php echo $id; ?>"/>
+							<input type="submit" name="enviar" value = "ADICIONAR AOS AMIGOS" class="amigo"/>
+						</form>
+					</div>
 					<hr/>
 					<p class="idade"><span>Idade:</span><?php echo " ". $idade; ?></p>
 					<hr/>
@@ -229,7 +231,7 @@
 											?>
 												<tr>
 													<td><img src="<?php echo $perfilA;?>"/></td>
-													<td><?php echo $nomeA ." ". $sobreA ." (" . $userA . ")";  ?></td>
+													<td class="nome"><?php echo $nomeA ." ". $sobreA ." (" . $userA . ")";  ?></td>
 												</tr>
 												<?php
 										}
