@@ -26,6 +26,8 @@
 
 				$conexao = mysqli_connect("localhost", "root", "","redeSocial");
 
+				$usu = mysqli_real_escape_string($conexao, $usu);
+
 				if (mysqli_connect_errno()) {
 					header("Location: login.php");
 					exit();

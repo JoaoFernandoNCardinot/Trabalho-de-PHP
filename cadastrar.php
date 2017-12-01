@@ -18,7 +18,7 @@
 
 		$senha = hash("sha512", $_POST['senha']);
 
-		if($senha == hash("sha512", $_POST['confir']) && $nome != "" && $idade != 0 && $sobre != "" && isset($_POST['sexo']) && $email !="" && $user != "" && hash("sha512", $_POST['senha']) != hash("sha512","") && isset($_FILES['ftPer']) && isset($_FILES['ftFun'])){
+		if($senha == hash("sha512", $_POST['confir']) && $nome != "" && $idade != 0 && $sobre != "" && isset($_POST['sexo']) && $email !="" && $user != "" && hash("sha512", $_POST['senha']) != hash("sha512","") && isset($_FILES['ftPer']) && isset($_FILES['ftFun']) && substr_count($user, " ")==0){
 
 			if($ftPer['type']=="image/jpeg" && $ftFun['type']=="image/jpeg" && $idade >= 12){
 
@@ -31,12 +31,15 @@
 						exit();
 					}
 
+					$user = mysqli_real_escape_string($conexao, $user);
+
 					$contagem = mysqli_query($conexao, 'SELECT * FROM usuarios');
 					$id = mysqli_num_rows($contagem);
 
 					$solicitacao="INSERT INTO usuarios VALUES ($id,'$nome','$sobre','$sexo',$idade,'$email','$user','$senha');";
 
 					if (mysqli_query($conexao,$solicitacao)===TRUE){
+
 						mkdir('dados/'.$user);
 
 						$caminho= getcwd()."/dados/".$user;
@@ -67,7 +70,7 @@
 				}
 			}
 			else{
-				$aviso2 = "Uma das imagens não é JPEG ou a idade menor que 12!;)";
+				$aviso2 = "Uma das imagens não é JPEG ou idade menor que 12!;)";
 				$aviso= "block";
 			}
 		}
