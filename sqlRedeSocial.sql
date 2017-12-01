@@ -19,6 +19,4 @@ create table amigos(
     primary key(id_pessoa, id_amigo)
 );
 
-drop table amigos;
-
 select * from usuarios;
